@@ -9,7 +9,7 @@ require 'json'
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 I_KNOW_THAT_OPENSSL_VERIFY_PEER_EQUALS_VERIFY_NONE_IS_WRONG = 1
 
-agent_sesssion = Mechanize.new { |agent|
+agent_session = Mechanize.new { |agent|
   agent.user_agent = 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko'
 }
 
@@ -48,7 +48,7 @@ begin
 	puts "\n\n\nPRODUTOS ENCONTRADOS NO MERCADO LIVRE\n\n\n"
 	
 	#agent_sesssion.get_produtos(url,produto,"")
-	page = agent_sesssion.get(url + nomeproduto)
+	page = agent_session.get(url + nomeproduto)
 
 	count = 0
 	count = get_produtos page, count
@@ -60,7 +60,7 @@ begin
 	loop do
 		break if link_proxima.empty?
 
-		page = agent_sesssion.get(link_proxima.to_s)
+		page = agent_session.get(link_proxima.to_s)
 
 		count = get_produtos page, count
 
